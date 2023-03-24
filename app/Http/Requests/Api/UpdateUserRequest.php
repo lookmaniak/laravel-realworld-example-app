@@ -35,8 +35,9 @@ class UpdateUserRequest extends FormRequest
                 Rule::unique('users', 'email')
                     ->ignore($user->getKey()),
             ],
-            'bio' => 'sometimes|nullable|string',
+            'registrant' => 'required|string',
             'image' => 'sometimes|nullable|string|url',
+            'name' => 'string|max:255|required'
         ];
     }
 

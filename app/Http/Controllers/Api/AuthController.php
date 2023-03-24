@@ -23,6 +23,9 @@ class AuthController extends Controller
         $attributes = $request->validated();
 
         $attributes['password'] = Hash::make($attributes['password']);
+        if(!$request->user()) {
+            $attributes['username'] = "user_" . uniqid();
+        }
 
         $user = User::create($attributes);
 
@@ -51,5 +54,15 @@ class AuthController extends Controller
                 'user' => [trans('auth.failed')],
             ],
         ], 422);
+    }
+
+    public function logout() {
+        
+        Auth::user()->logout();
+
+        return response()->json([
+            'message' => trans('auth.loggedout'),
+        ], 200);
+
     }
 }

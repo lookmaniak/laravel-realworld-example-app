@@ -71,8 +71,9 @@ class User extends Authenticatable implements JwtSubjectInterface
         'username',
         'email',
         'password',
-        'bio',
+        'registrant',
         'image',
+        'name',
     ];
 
     /**
@@ -174,4 +175,29 @@ class User extends Authenticatable implements JwtSubjectInterface
     {
         return $this->belongsToMany(Article::class, 'article_favorite');
     }
+
+    public function profile() {
+        return $this->hasOne(Profile::class, 'user_id')->with('province')->with('city')->with('district')->with('village')->first();
+    }
+
+    public function accounts() {
+        return $this->hasMany(UserAccount::class, 'user_id')->where('is_deleted', false);
+    }
+
+    public function madrasah() {
+        return $this->hasMany(Madrasah::class, 'user_id')->where('is_deleted', false);
+    }
+
+    public function tahun_pelajaran() {
+        return $this->hasMany(TahunPelajaran::class, 'user_id')->where('is_deleted', false);
+    }
+
+    public function siswa() {
+        return $this->hasMany(Madrasah::class, 'user_id')
+        ->where('is_deleted', false)
+        ->with('siswa', function($q) {
+            return $q->where('is_deleted', false);
+        });
+    }
+
 }

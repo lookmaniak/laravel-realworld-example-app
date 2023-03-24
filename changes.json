@@ -1,0 +1,30 @@
+{
+    "changes": [
+        {
+            "table" : "profiles",
+            "drop" : [
+                "tanggal_lahir",
+                "jabatan",
+                "tanggal_masuk",
+                "tempat_lahir",
+                "pendidikan_terakhir",
+                "jurusan",
+                "keahlian",
+                "hobi",
+                "foto"
+            ],
+            "add" : {
+                "columns" : [
+                    "organization_type_id",
+                    "address",
+                    "provinsi_id",
+                    "kabupaten_id",
+                    "kecamatan_id",
+                    "desa_id",
+                    "postal_code"
+                ]
+            }
+        },
+        ""
+    ]
+}

@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 class NewCommentRequest extends FormRequest
 {
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules that apply to the request become good.
      *
      * @return array<string, mixed>
      */
@@ -20,6 +20,8 @@ class NewCommentRequest extends FormRequest
     }
 
     /**
+     * Wrap non array or null value
+     * 
      * @return array<mixed>
      */
     public function validationData()

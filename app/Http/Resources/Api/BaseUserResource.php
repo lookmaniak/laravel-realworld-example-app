@@ -21,8 +21,9 @@ abstract class BaseUserResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'name' => $this->resource->name,
             'username' => $this->resource->username,
-            'bio' => $this->resource->bio,
+            'registrant' => $this->resource->registrant,
             'image' => $this->resource->image,
         ];
     }
